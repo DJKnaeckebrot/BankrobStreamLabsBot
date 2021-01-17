@@ -307,7 +307,7 @@ def Tick():
             MySet.ActiveGame = False
             MySet.ActiveGameEnd = None
         
-            UserWinValue = Parent.GetRandom(1,10)
+            UserWinValue = Parent.GetRandom(1,1001)
         
             # check if user wins against boss
             if UserWinValue < 10:
