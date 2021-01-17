@@ -17,7 +17,7 @@ import time
 ScriptName = "Bankrob"
 Website = "https://github.com/mrdennis1212"
 Creator = "mrdennis1212"
-Version = "1.0"
+Version = "0.2-alpha"
 Description = "Bankrob command"
 #---------------------------------------
 # Versions
