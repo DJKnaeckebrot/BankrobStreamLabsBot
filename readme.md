@@ -19,9 +19,12 @@ If you try to rob someone alone you will be caught so always make sure to have m
 2. Enable the script in Streamlabs Chatbot Application  
 3. Modify the values of the script  
  
+## V0.2
+ - Customisable Chances
+ - Chances will rise with each use that joins (issue#1)
+
 ## V0.1
 
- - Enable/Disable using the command when the stream is offline
  - Enable/Disable cooldown / user cooldown
  - Enable/Disable cooldown / user cooldown messages
  - Customisable command name

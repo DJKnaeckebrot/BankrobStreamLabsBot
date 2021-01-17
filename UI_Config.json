@@ -27,6 +27,16 @@
         "value": 100,
         "tooltip": "Cost to use the command",
         "group": "General"
+    }, 
+    "Chance": {
+        "type": "slider",
+        "label": "Chance",
+        "value": 2,
+        "min": 0,
+        "max": 10,
+        "ticks": 1,
+        "tooltip": "Chance to break into the bank account (0=0% 10=1%)",
+        "group": "General"
     },
     "Permission": {
         "type": "dropdown",

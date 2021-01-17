@@ -45,19 +45,24 @@ class Settings:
                 self.ActiveGame = False
                 self.ActiveGameAttendees = []
                 self.ActiveGameEnd = None
+                self.MaxChance = 20
+                self.combinedChance = 0.0
 
         else: #set variables if no custom settings file is found
             self.OnlyLive = False
             self.Command = "!bankrob"
             self.JoinCommand = "!joinheist"
             self.Cost = 10
+            self.Chance = 2.0
+            self.MaxChance = 20
+            self.combinedChance = 0
             self.Permission = "Everyone"
             self.PermissionInfo = ""
             self.Usage = "Stream Chat"
             self.UseCD = True
-            self.Cooldown = 180
+            self.Cooldown = 0
             self.OnCooldown = "{0} the command is still on cooldown for {1} seconds!"
-            self.UserCooldown = 180
+            self.UserCooldown = 0
             self.OnUserCooldown = "{0} the command is still on user cooldown for {1} seconds!"
             self.CasterCD = True
             self.NotEnoughResponse = "{0} you don't have enough {1} to attempt this! You will need atleast {2} {1}."
@@ -263,19 +268,20 @@ def Execute(data):
                     return
             
                 # subtract usage costs
-                Parent.RemovePoints(data.User, data.UserName, MySet.Cost)             
+                Parent.RemovePoints(data.User, data.UserName, MySet.Cost)         
                 
-                               
-                # todo: update WinText with information about the attendees
-                # teststring = BXWinText.replace(X, MySet.selectedboss + 1)
-                # teststring = "B" + (MySet.selectedboss + 1) + "WinText"
-                # MySet.Boss[5] = MySet.vars()[teststring].format(data.UserName, len(MySet.ActiveGameAttendees)-1, MySet.Boss[2], Parent.GetCurrencyName(), MySet.Boss[2]/len(MySet.ActiveGameAttendees))
-           
-                
+                # Setup chance
+                if MySet.combinedChance <= 20:
+                    if (MySet.combinedChance * len(MySet.ActiveGameAttendees)) <= 2:
+                        MySet.combinedChance = MySet.Chance*(len(MySet.ActiveGameAttendees)+1)
+                    else:
+                        return
+
+
                 # add user to game and notify
-                winChance = 0.1
                 MySet.ActiveGameAttendees.append(data.User)
-                message = MySet.JoinedFightResponse.format(data.UserName, targetname, len(MySet.ActiveGameAttendees), winChance, stolenMoney, stolenMoney/len(MySet.ActiveGameAttendees))
+                
+                message = MySet.JoinedFightResponse.format(data.UserName, targetname, len(MySet.ActiveGameAttendees), MySet.combinedChance/10, stolenMoney, stolenMoney/len(MySet.ActiveGameAttendees))
                 SendResp(data, message)       
             
             else:
@@ -308,9 +314,9 @@ def Tick():
             MySet.ActiveGameEnd = None
         
             UserWinValue = Parent.GetRandom(1,1001)
-        
+
             # check if user wins against boss
-            if UserWinValue < 10:
+            if UserWinValue < MySet.combinedChance:
                 for ActiveGameAttendeesIT in MySet.ActiveGameAttendees:
                     # Add won points (total/amount attendees = share points) to account and add cooldown to users
                     Parent.AddPoints(ActiveGameAttendeesIT, ActiveGameAttendeesIT, stolenMoney/len(MySet.ActiveGameAttendees))
@@ -322,9 +328,10 @@ def Tick():
                 Parent.SendStreamMessage(message)
                 # clean up attendees array
                 del MySet.ActiveGameAttendees[:]
+                MySet.combinedChance = 0.0
                 Parent.AddCooldown(ScriptName, MySet.Command, MySet.Cooldown)
                 return
-            elif UserWinValue >= 10:
+            elif UserWinValue >= MySet.combinedChance:
                 # Remove lost points from account and add cooldown to users
                 for ActiveGameAttendeesIT in MySet.ActiveGameAttendees:
                     Parent.RemovePoints(ActiveGameAttendeesIT, ActiveGameAttendeesIT, MySet.Cost)
@@ -335,6 +342,7 @@ def Tick():
                 Parent.SendStreamMessage(message)
                 # clean up attendees array
                 del MySet.ActiveGameAttendees[:]
+                MySet.combinedChance = 0.0
                 Parent.AddCooldown(ScriptName, MySet.Command, MySet.Cooldown)
                 if MySet.Timeout:
                     Parent.SendStreamMessage("/timeout {0} {1}".format(data.User, MySet.TL))
