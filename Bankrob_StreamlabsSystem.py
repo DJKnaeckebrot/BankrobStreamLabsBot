@@ -41,6 +41,10 @@ class Settings:
         if settingsFile and os.path.isfile(settingsFile):
             with codecs.open(settingsFile, encoding='utf-8-sig', mode='r') as f:
                 self.__dict__ = json.load(f, encoding='utf-8-sig')
+                # load variables that do not need to be customisable from the ui
+                self.ActiveGame = False
+                self.ActiveGameAttendees = []
+                self.ActiveGameEnd = None
 
         else: #set variables if no custom settings file is found
             self.OnlyLive = False
