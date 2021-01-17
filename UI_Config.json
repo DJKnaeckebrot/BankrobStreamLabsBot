@@ -1,5 +1,5 @@
-{
-    "output_file": "settings.json",
+﻿{
+  "output_file": "settings.json",
     "OnlyLive": {
         "type": "checkbox",
         "value": false,
@@ -16,7 +16,7 @@
     },
     "JoinCommand": {
         "type": "textbox",
-        "value": "!join-heist",
+        "value": "!joinheist",
         "label": "Command Name",
         "tooltip": "The command to join the bankrob",
         "group": "General"
@@ -83,7 +83,7 @@
     "Cooldown": {
         "type": "numberbox",
         "label": "Cooldown (seconds)",
-        "value": 30,
+        "value": 60,
         "tooltip": "Cooldown in seconds.",
         "group": "Cooldown"
     },
@@ -153,35 +153,35 @@
     "ActiveGameResponse": {
         "type": "textbox",
         "value": "{0} the bankrob against {1} is currently active. Type {2} in the next {3} seconds to join the heist.",
-        "lable": "Heist is active text",
+        "label": "Heist is active text",
         "tooltip": "Text that will be shown when a heist is active",
         "group": "Responses"
     },
     "NoActiveGameResponse": {
         "type": "textbox",
         "value": "{0} there is no bankrob currently active. Type {1} to begin da bankrob!",
-        "lable": "No heist active lable",
+        "label": "No heist active lable",
         "tooltip": "Message that will be send when no heist is active",
         "group": "Responses"
     },
     "JoinedFightResponse": {
         "type": "textbox",
         "value": "{0} you joined the heist against {1}! Attendees: {2} - Win Chance {3} - Total Win Points {4} - Win Points per User {5}",
-        "lable": "User joined heist text",
+        "label": "User joined heist text",
         "tooltip": "Text that will be shown when a user joins the heist",
         "group": "Responses"
     },
     "AlreadyJoinedFight": {
         "type": "textbox",
         "value": "{0} you already joined the heist!",
-        "lable": "Already in heist text",
+        "label": "Already in heist text",
         "tooltip": "Text that will be shown when a user enters a heist when he already joined",
         "group": "Responses"
     },
     "NoTeammatesFound": {
         "type": "textbox",
         "value": "{0} tried to rob {1} {2} from {3}. But nobody wanted to join him and he got caught!",
-        "lable": "Text that will be show when less than 2 people try a bankrob",
+        "label": "Text that will be show when less than 2 people try a bankrob",
         "tooltip": "Text that will be shown when only 1 person tried to bankrob",
         "group": "Responses"
     },
