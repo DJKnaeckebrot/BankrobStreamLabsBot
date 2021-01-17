@@ -2,7 +2,7 @@
 
 
 Name: Bankrob Streamlabs Bot  
-Version: 0.2-alpha 
+Version: 1.0
 Creator: [mrdennis1212](https://github.com/mrdennis1212)  
 [Website](https://github.com/mrdennis1212/BankrobStreamLabsBot)
 
@@ -19,9 +19,13 @@ If you try to rob someone alone you will be caught so always make sure to have m
 2. Enable the script in Streamlabs Chatbot Application  
 3. Modify the values of the script  
  
+## V1.0
+ - Intitial Release
+
 ## V0.2
  - Customisable Chances
- - Chances will rise with each use that joins (issue#1)
+ - Chances will rise with each use that joins (issue#2)
+
 
 ## V0.1
 
