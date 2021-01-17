@@ -2,7 +2,7 @@
 
 
 Name: Bankrob Streamlabs Bot  
-Version: 0.1-alpha 
+Version: 0.2-alpha 
 Creator: [mrdennis1212](https://github.com/mrdennis1212)  
 [Website](https://github.com/mrdennis1212/BankrobStreamLabsBot)
 
