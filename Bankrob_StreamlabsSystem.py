@@ -55,9 +55,9 @@ class Settings:
             self.PermissionInfo = ""
             self.Usage = "Stream Chat"
             self.UseCD = True
-            self.Cooldown = 5
+            self.Cooldown = 180
             self.OnCooldown = "{0} the command is still on cooldown for {1} seconds!"
-            self.UserCooldown = 10
+            self.UserCooldown = 180
             self.OnUserCooldown = "{0} the command is still on user cooldown for {1} seconds!"
             self.CasterCD = True
             self.NotEnoughResponse = "{0} you don't have enough {1} to attempt this! You will need atleast {2} {1}."
