@@ -90,6 +90,13 @@
         "tooltip": "Enable/Disable cooldown messages",
         "group": "Cooldown"
     },
+    "ActiveGameTime": {
+        "type": "numberbox",
+        "label": "Game time (seconds)",
+        "value": 60,
+        "tooltip": "Game time to join the heist (in seconds).",
+        "group": "Cooldown"
+      },
     "Cooldown": {
         "type": "numberbox",
         "label": "Cooldown (seconds)",
