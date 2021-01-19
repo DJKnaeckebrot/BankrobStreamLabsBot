@@ -324,7 +324,7 @@ def Tick():
                     Parent.AddUserCooldown(ScriptName, MySet.Command, ActiveGameAttendeesIT, MySet.UserCooldown)
                     Parent.AddUserCooldown(ScriptName, MySet.JoinCommand, ActiveGameAttendeesIT, MySet.UserCooldown)
                     # todo: change username to @username
-                message = MySet.WinResponse.format(MySet.ActiveGameAttendees[1], len(MySet.ActiveGameAttendees)-1, stolenMoney, Parent.GetCurrencyName(), targetname, stolenMoney/len(MySet.ActiveGameAttendees))
+                message = MySet.WinResponse.format(MySet.ActiveGameAttendees[0], len(MySet.ActiveGameAttendees)-1, stolenMoney, Parent.GetCurrencyName(), targetname, stolenMoney/len(MySet.ActiveGameAttendees))
                 Parent.SendStreamMessage(message)
                 # clean up attendees array
                 del MySet.ActiveGameAttendees[:]
@@ -338,7 +338,7 @@ def Tick():
                     Parent.AddPoints(targetname, targetname, MySet.Cost*len(MySet.ActiveGameAttendees))
                     Parent.AddUserCooldown(ScriptName, MySet.Command, ActiveGameAttendeesIT, MySet.UserCooldown)
                     Parent.AddUserCooldown(ScriptName, MySet.JoinCommand, ActiveGameAttendeesIT, MySet.UserCooldown)
-                message = MySet.LoseResponse.format(MySet.ActiveGameAttendees[1], len(MySet.ActiveGameAttendees)-1, stolenMoney, Parent.GetCurrencyName(), targetname, MySet.Cost*len(MySet.ActiveGameAttendees))
+                message = MySet.LoseResponse.format(MySet.ActiveGameAttendees[0], len(MySet.ActiveGameAttendees)-1, stolenMoney, Parent.GetCurrencyName(), targetname, MySet.Cost*len(MySet.ActiveGameAttendees))
                 Parent.SendStreamMessage(message)
                 # clean up attendees array
                 del MySet.ActiveGameAttendees[:]
