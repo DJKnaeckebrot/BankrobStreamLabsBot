@@ -24,6 +24,7 @@ Description = "Bankrob command"
 #---------------------------------------
 """ Releases (open README.txt for full release notes)
 1.0.0 - Initial Release
+1.0.1 - Bug Fixes
 """
 #---------------------------------------
 # Variables
