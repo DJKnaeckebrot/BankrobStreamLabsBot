@@ -17,7 +17,7 @@ import time
 ScriptName = "Bankrob"
 Website = "https://github.com/mrdennis1212"
 Creator = "mrdennis1212"
-Version = "1.0"
+Version = "1.0.1"
 Description = "Bankrob command"
 #---------------------------------------
 # Versions
@@ -61,6 +61,9 @@ class Settings:
             self.Usage = "Stream Chat"
             self.UseCD = True
             self.Cooldown = 0
+            self.ActiveGame = False
+            self.ActiveGameAttendees = []
+            self.ActiveGameEnd = None
             self.OnCooldown = "{0} the command is still on cooldown for {1} seconds!"
             self.UserCooldown = 0
             self.OnUserCooldown = "{0} the command is still on user cooldown for {1} seconds!"
