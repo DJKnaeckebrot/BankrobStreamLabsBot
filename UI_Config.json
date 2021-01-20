@@ -174,6 +174,13 @@
         "tooltip": "Text that will be shown when a heist is active",
         "group": "Responses"
     },
+    "StartMessage": {
+        "type": "textbox",
+        "value": "{0} started a bankrob against {1}! Type {2} to join the heist!",
+        "label": "Heist is active text",
+        "tooltip": "Text that will be shown when a heist is active",
+        "group": "Responses"
+    },
     "NoActiveGameResponse": {
         "type": "textbox",
         "value": "{0} there is no bankrob currently active. Type {1} to begin da bankrob!",
