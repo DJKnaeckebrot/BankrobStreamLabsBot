@@ -328,10 +328,10 @@ def Tick():
                 for ActiveGameAttendeesIT in MySet.ActiveGameAttendees:
                     # Add won points (total/amount attendees = share points) to account and add cooldown to users
                     Parent.AddPoints(ActiveGameAttendeesIT, ActiveGameAttendeesIT, stolenMoney/len(MySet.ActiveGameAttendees))
-                    Parent.RemovePoints(targetname, targetname, stolenMoney)
                     Parent.AddUserCooldown(ScriptName, MySet.Command, ActiveGameAttendeesIT, MySet.UserCooldown)
                     Parent.AddUserCooldown(ScriptName, MySet.JoinCommand, ActiveGameAttendeesIT, MySet.UserCooldown)
                     # todo: change username to @username
+                Parent.RemovePoints(targetname, targetname, stolenMoney)
                 message = MySet.WinResponse.format(MySet.ActiveGameAttendees[0], len(MySet.ActiveGameAttendees)-1, stolenMoney, Parent.GetCurrencyName(), targetname, stolenMoney/len(MySet.ActiveGameAttendees))
                 Parent.SendStreamMessage(message)
                 # clean up attendees array
@@ -343,9 +343,9 @@ def Tick():
                 # Remove lost points from account and add cooldown to users
                 for ActiveGameAttendeesIT in MySet.ActiveGameAttendees:
                     Parent.RemovePoints(ActiveGameAttendeesIT, ActiveGameAttendeesIT, MySet.Cost)
-                    Parent.AddPoints(targetname, targetname, MySet.Cost*len(MySet.ActiveGameAttendees))
                     Parent.AddUserCooldown(ScriptName, MySet.Command, ActiveGameAttendeesIT, MySet.UserCooldown)
                     Parent.AddUserCooldown(ScriptName, MySet.JoinCommand, ActiveGameAttendeesIT, MySet.UserCooldown)
+                Parent.AddPoints(targetname, targetname, MySet.Cost*len(MySet.ActiveGameAttendees))
                 message = MySet.LoseResponse.format(MySet.ActiveGameAttendees[0], len(MySet.ActiveGameAttendees)-1, stolenMoney, Parent.GetCurrencyName(), targetname, MySet.Cost*len(MySet.ActiveGameAttendees))
                 Parent.SendStreamMessage(message)
                 # clean up attendees array
