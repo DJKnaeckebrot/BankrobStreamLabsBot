@@ -56,7 +56,7 @@ class Settings:
             self.Cost = 10
             self.Chance = 2.0
             self.MaxChance = 20
-            self.combinedChance = 0
+            self.combinedChance = 0.0
             self.Permission = "Everyone"
             self.PermissionInfo = ""
             self.Usage = "Stream Chat"
