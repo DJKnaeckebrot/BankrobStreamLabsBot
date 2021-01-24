@@ -283,10 +283,7 @@ def Execute(data):
                 
                 # Setup chance
                 if MySet.combinedChance <= 20:
-                    if (MySet.combinedChance * len(MySet.ActiveGameAttendees)) <= 2:
-                        MySet.combinedChance = MySet.Chance*(len(MySet.ActiveGameAttendees)+1)
-                    else:
-                        return
+                    MySet.combinedChance = MySet.Chance*len(MySet.ActiveGameAttendees)
 
 
                 # add user to game and notify
