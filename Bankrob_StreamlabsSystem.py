@@ -278,6 +278,12 @@ def Execute(data):
                     SendResp(data, message)
                     return
             
+                # check if target is not intitator
+                if targetname == data.User:
+                    message = MySet.SelfRobResponse.format(data.UserName)
+                    SendResp(data,message)
+                    return
+                
                 # subtract usage costs
                 Parent.RemovePoints(data.User, data.UserName, MySet.Cost)         
                 
