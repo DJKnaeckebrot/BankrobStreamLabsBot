@@ -167,68 +167,78 @@ def Execute(data):
             if IsOnCooldown(data):
                 return
                 
-            targetname = data.GetParam(1).lower().replace('@', '')
-            
-            # check if target is in the blacklist
-            if targetname in userblacklist:
-                message = MySet.BlacklistResponse.format(data.UserName, data.GetParam(1))
-                SendResp(data,message)
-                return
-            
-            # check if target is streamer and protected mode is on
-            if targetname == Parent.GetChannelName().lower and MySet.Protected:
-                value = Parent.GetRandom(MySet.Min, MySet.Max)
-                Parent.RemovePoints(data.User, data.UserName, value)
-                message = MySet.LoseResponse.format(data.UserName, Parent.GetCurrencyName(), value, data.GetParam(1))
-                SendResp(data, message)
-                AddCooldown(data)
-                return
+            # check if bankrob is active 
+            if MySet.ActiveGame:
 
-            # check if target has been selected
-            if data.GetParamCount() < 2:
-                message = MySet.InfoResponse.format(data.UserName)
+                # notify that a game is active 
+                message = MySet.ActiveGameResponse.format(data.UserName, targetname, MySet.JoinCommand, str(round(MySet.ActiveGameEnd - time.time())))
                 SendResp(data, message)
                 return
 
-            # check if target is not intitator
-            if targetname == data.User:
-                message = MySet.SelfRobResponse.format(data.UserName)
-                SendResp(data,message)
-                return
+            else:
             
-            # get current viewers
-            viewerlist = Parent.GetViewerList() 
+                targetname = data.GetParam(1).lower().replace('@', '')
             
-            for viewerlistIT in viewerlist:
-                viewerlistIT = viewerlistIT.lower()
+                # check if target is in the blacklist
+                if targetname in userblacklist:
+                    message = MySet.BlacklistResponse.format(data.UserName, data.GetParam(1))
+                    SendResp(data,message)
+                    return
+            
+                # check if target is streamer and protected mode is on
+                if targetname == Parent.GetChannelName().lower and MySet.Protected:
+                    value = Parent.GetRandom(MySet.Min, MySet.Max)
+                    Parent.RemovePoints(data.User, data.UserName, value)
+                    message = MySet.LoseResponse.format(data.UserName, Parent.GetCurrencyName(), value, data.GetParam(1))
+                    SendResp(data, message)
+                    AddCooldown(data)
+                    return
+
+                # check if target has been selected
+                if data.GetParamCount() < 2:
+                    message = MySet.InfoResponse.format(data.UserName)
+                    SendResp(data, message)
+                    return
+
+                # check if target is not intitator
+                if targetname == data.User:
+                    message = MySet.SelfRobResponse.format(data.UserName)
+                    SendResp(data,message)
+                    return
+            
+                # get current viewers
+                viewerlist = Parent.GetViewerList() 
+            
+                for viewerlistIT in viewerlist:
+                    viewerlistIT = viewerlistIT.lower()
                     
-            # check if target is in viewerlist     
-            if targetname not in viewerlist:
-                message = MySet.NotHereResponse.format(data.UserName)
-                SendResp(data,message)
-                return
+                # check if target is in viewerlist     
+                if targetname not in viewerlist:
+                    message = MySet.NotHereResponse.format(data.UserName)
+                    SendResp(data,message)
+                    return
                             
-            # check if user has enough coins
-            if not Parent.RemovePoints(data.User, data.UserName, MySet.Cost):
-                message = MySet.NotEnoughResponse.format(data.UserName, Parent.GetCurrencyName(), MySet.Cost)
-                SendResp(data, message)
-                return
-            Parent.AddPoints(data.User, data.UserName, MySet.Cost)
+                # check if user has enough coins
+                if not Parent.RemovePoints(data.User, data.UserName, MySet.Cost):
+                    message = MySet.NotEnoughResponse.format(data.UserName, Parent.GetCurrencyName(), MySet.Cost)
+                    SendResp(data, message)
+                    return
+                Parent.AddPoints(data.User, data.UserName, MySet.Cost)
 
-            # setup random values
-            userMoney = Parent.GetPoints(targetname)
-            stolenMoney = Parent.GetRandom(userMoney/2, userMoney)
+                # setup random values
+                userMoney = Parent.GetPoints(targetname)
+                stolenMoney = Parent.GetRandom(userMoney/2, userMoney)
 
-            # Subtract cost from user           
-            Parent.RemovePoints(data.User, data.UserName, MySet.Cost)
+                # Subtract cost from user           
+                Parent.RemovePoints(data.User, data.UserName, MySet.Cost)
                       
-            # enable heist
-            MySet.ActiveGame = True
-            MySet.ActiveGameEnd = time.time() + MySet.ActiveGameTime
-            MySet.ActiveGameAttendees.append(data.User)
+                # enable heist
+                MySet.ActiveGame = True
+                MySet.ActiveGameEnd = time.time() + MySet.ActiveGameTime
+                MySet.ActiveGameAttendees.append(data.User)
 
-            message = MySet.StartMessage.format(data.UserName, targetname, MySet.JoinCommand)
-            SendResp(data, message)
+                message = MySet.StartMessage.format(data.UserName, targetname, MySet.JoinCommand)
+                SendResp(data, message)
 
     #check if command is join command      
     elif data.IsChatMessage() and data.GetParam(0).lower() == MySet.JoinCommand.lower():
@@ -252,7 +262,7 @@ def Execute(data):
             if IsOnCooldown(data):
                 return
             
-            # check if hunt is active 
+            # check if bankrob is active 
             if MySet.ActiveGame:
             
                 # check if user has more points than highest possible lost
