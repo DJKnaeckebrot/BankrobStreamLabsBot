@@ -17,7 +17,7 @@ import time
 ScriptName = "Bankrob"
 Website = "https://github.com/mrdennis1212"
 Creator = "mrdennis1212"
-Version = "1.0.1"
+Version = "1.0.2"
 Description = "Bankrob command"
 #---------------------------------------
 # Versions
@@ -25,6 +25,7 @@ Description = "Bankrob command"
 """ Releases (open README.txt for full release notes)
 1.0.0 - Initial Release
 1.0.1 - Bug Fixes
+1.0.2 - Bug Fixes
 """
 #---------------------------------------
 # Variables
